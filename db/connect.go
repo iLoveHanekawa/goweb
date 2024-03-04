@@ -2,6 +2,7 @@ package db
 
 import (
 	"fmt"
+	"goweb/migrations"
 	"log"
 	"os"
 
@@ -30,5 +31,6 @@ func Connect() (*gorm.DB, error) {
 	)
 	// dsn := "host=localhost user=postgres password=password dbname=gorm port=8080 sslmode=disable TimeZone=Asia/Kolkata"
 	db, err := gorm.Open(postgres.Open(dsn), &gorm.Config{})
+	migrations.AutoMigrate(db)
 	return db, err
 }

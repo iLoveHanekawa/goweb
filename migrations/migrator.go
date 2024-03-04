@@ -6,6 +6,6 @@ import (
 	"gorm.io/gorm"
 )
 
-func InitializeDB(db *gorm.DB) {
+func AutoMigrate(db *gorm.DB) {
 	db.AutoMigrate(&models.Pokemon{})
 }
