@@ -6,6 +6,7 @@ import (
 
 type Pokemon struct {
 	gorm.Model
-	Name string
-	Type string
+	Name  string
+	Type  string
+	Level int
 }
