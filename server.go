@@ -21,7 +21,7 @@ func main() {
 	}
 
 	e.GET("/", func(c echo.Context) error {
-		component := views.Hello("Arjun")
+		component := views.Html()
 		return component.Render(context.Background(), c.Response().Writer)
 	})
 
