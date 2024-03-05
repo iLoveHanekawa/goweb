@@ -27,7 +27,7 @@ func Html() templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = Hello("Arjun").Render(ctx, templ_7745c5c3_Buffer)
+		templ_7745c5c3_Err = Hello("World").Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
