@@ -11,7 +11,7 @@ import (
 func main() {
 	e := echo.New()
 
-	dbInstance, err := db.Connect()
+	gorm, err := db.Connect()
 	if err != nil {
 		e.Logger.Errorf("Error connecting to database: %v", err)
 	}
@@ -22,7 +22,7 @@ func main() {
 
 	e.GET("/api/v1/pokemons", func(c echo.Context) error {
 		var pokemons []models.Pokemon
-		if err := dbInstance.Find(&pokemons).Error; err != nil {
+		if err := gorm.Find(&pokemons).Error; err != nil {
 			return c.String(http.StatusOK, "Something went wrong while quering the database")
 		}
 		return c.JSON(http.StatusOK, pokemons)
@@ -31,7 +31,7 @@ func main() {
 	e.GET("/api/v1/pokemons/:id", func(c echo.Context) error {
 		var pokemon models.Pokemon
 		id := c.Param("id")
-		if result := dbInstance.First(&pokemon, id); result.Error != nil {
+		if result := gorm.First(&pokemon, id); result.Error != nil {
 			return c.String(http.StatusOK, "Something went wrong while quering the database")
 		}
 		return c.JSON(http.StatusOK, pokemon)
@@ -42,7 +42,7 @@ func main() {
 		if err := c.Bind(pokemon); err != nil {
 			return c.JSON(http.StatusOK, err)
 		}
-		if err := dbInstance.Create(&pokemon).Error; err != nil {
+		if err := gorm.Create(&pokemon).Error; err != nil {
 			return c.String(http.StatusOK, "Something went wrong while writing to the database.")
 		}
 		return c.JSON(http.StatusOK, pokemon)
@@ -53,7 +53,7 @@ func main() {
 		if err := c.Bind(pokemon); err != nil {
 			return c.JSON(http.StatusOK, err)
 		}
-		if err = dbInstance.Model(pokemon).Updates(pokemon).First(pokemon).Error; err != nil {
+		if err = gorm.Model(pokemon).Updates(pokemon).First(pokemon).Error; err != nil {
 			return c.String(http.StatusOK, "Something went wrong while writing to the database.")
 		}
 		return c.JSON(http.StatusOK, pokemon)
