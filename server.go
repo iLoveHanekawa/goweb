@@ -37,5 +37,14 @@ func main() {
 		return c.JSON(http.StatusOK, pokemon)
 	})
 
+	e.POST("/api/v1/pokemons", func(c echo.Context) error {
+		pokemon := new(models.Pokemon)
+		c.Bind(pokemon)
+		if err := dbInstance.Create(&pokemon).Error; err != nil {
+			return c.String(http.StatusOK, "Something went wrong while writing to the database")
+		}
+		return c.JSON(http.StatusOK, pokemon)
+	})
+
 	e.Logger.Fatal(e.Start(":1323"))
 }

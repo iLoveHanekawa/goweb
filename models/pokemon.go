@@ -6,7 +6,7 @@ import (
 
 type Pokemon struct {
 	gorm.Model
-	Name  string
-	Type  string
-	Level int
+	Name  string `json:"name"`
+	Type  string `json:"type"`
+	Level int    `json:"level"`
 }
