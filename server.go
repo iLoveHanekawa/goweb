@@ -5,6 +5,10 @@ import (
 	"goweb/models"
 	"net/http"
 
+	"context"
+
+	"goweb/views"
+
 	"github.com/labstack/echo/v4"
 )
 
@@ -17,7 +21,8 @@ func main() {
 	}
 
 	e.GET("/", func(c echo.Context) error {
-		return c.String(http.StatusOK, "Hello world!")
+		component := views.Hello("Arjun")
+		return component.Render(context.Background(), c.Response().Writer)
 	})
 
 	e.GET("/api/v1/pokemons", func(c echo.Context) error {
