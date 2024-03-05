@@ -40,18 +40,24 @@ func main() {
 	e.POST("/api/v1/pokemons", func(c echo.Context) error {
 		pokemon := new(models.Pokemon)
 		if err := c.Bind(pokemon); err != nil {
-			return c.String(http.StatusOK, "Invalid request body.")
+			return c.JSON(http.StatusOK, err)
 		}
 		if err := dbInstance.Create(&pokemon).Error; err != nil {
-			return c.String(http.StatusOK, "Something went wrong while writing to the database")
+			return c.String(http.StatusOK, "Something went wrong while writing to the database.")
 		}
 		return c.JSON(http.StatusOK, pokemon)
 	})
 
-	// e.POST("/api/v1/pokemons/level", func(c echo.Context) error {
-	// 	var pokemon models.Pokemon
-	// 	c.Bind()
-	// })
+	e.PATCH("/api/v1/pokemons", func(c echo.Context) error {
+		pokemon := new(models.Pokemon)
+		if err := c.Bind(pokemon); err != nil {
+			return c.JSON(http.StatusOK, err)
+		}
+		if err = dbInstance.Model(pokemon).Updates(pokemon).First(pokemon).Error; err != nil {
+			return c.String(http.StatusOK, "Something went wrong while writing to the database.")
+		}
+		return c.JSON(http.StatusOK, pokemon)
+	})
 
 	e.Logger.Fatal(e.Start(":1323"))
 }
