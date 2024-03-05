@@ -1,0 +1,6 @@
+package views
+
+templ Button(isLoading string, isPrimary bool,text string) {
+    // <button disabled={isLoading} className={`${isPrimary? 'primary-button': 'secondary-button'}`}>{children}</button>
+     <button disabled={isLoading} class="primary-button">{ text }</button>
+}
