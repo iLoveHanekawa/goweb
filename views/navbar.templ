@@ -1,10 +1,10 @@
 package views
 
-templ Navbar() {
+templ Navbar(pathname string) {
     <nav class="navbar">
         // <a href="http://localhost:1323/" className={`${window.location.pathname === '/'? 'active-nav': ''}`}>Home</a>
-        <a href="http://localhost:1323/" class="active-nav">Home</a>
+        <a href="http://localhost:1323/" class={ templ.KV("active-nav", pathname == "/") }>Home</a>
 
-        <a href="http://localhost:1323/pokemons" class="">Pokemons</a>
+        <a href="http://localhost:1323/pokemons" class={ templ.KV("active-nav", pathname == "/pokemons") }>Pokemons</a>
     </nav>
 }
