@@ -40,7 +40,7 @@ func PokemonPage(pokemons []models.Pokemon) templ.Component {
 			return templ_7745c5c3_Err
 		}
 		for _, pokemon := range pokemons {
-			templ_7745c5c3_Err = Pokemon(pokemon.ID, pokemon.Name).Render(ctx, templ_7745c5c3_Buffer)
+			templ_7745c5c3_Err = Pokemon(pokemon.ID, pokemon.Name, pokemon.Type, pokemon.Level).Render(ctx, templ_7745c5c3_Buffer)
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}

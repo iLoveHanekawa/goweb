@@ -2,10 +2,11 @@ package views
 
 import "fmt"
 
-templ Pokemon(id uint, name string) {
+templ Pokemon(id uint, name string, ptype string, level int ) {
     <div>
         <h3 class="poke-name">{name}</h3>
-        <h4 class="poke-type">{fmt.Sprint(id)}</h4>
+        <h4 class="poke-type">{ptype}</h4>
+        <h4 class="poke-type">{fmt.Sprint(level)}</h4>
         @UpdatePokemonForm(id)
         @ReleasePokemonForm(id)
     </div>
