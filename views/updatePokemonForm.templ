@@ -1,0 +1,9 @@
+package views
+
+templ UpdatePokemonForm(id string) {
+    <form method="POST" onSubmit={updateSubmidHandler}>
+        <input type="text" class="poke-input" />
+        <input type="text" hidden value={id} />
+        @Button(false, false, "Change level")
+    </form>
+}
