@@ -2,5 +2,5 @@ package views
 
 templ Button(isLoading bool, isPrimary bool,text string) {
     // <button disabled={isLoading} className={`${isPrimary? 'primary-button': 'secondary-button'}`}>{children}</button>
-     <button disabled?={isLoading} class={ templ.KV("primary-button", isPrimary) }>{ text }</button>
+     <button disabled?={isLoading} class={ templ.KV("primary-button", isPrimary), templ.KV("secondary-button", !isPrimary) }>{ text }</button>
 }
