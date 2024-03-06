@@ -6,6 +6,8 @@ templ CatchPokemonForm(isLoading bool, isPrimary bool, text string) {
         <input class="poke-input" id="name" type="text" />
         <label class="poke-label" htmlFor="type">Pokemon Type</label>
         <input class="poke-input" id="type" type="text" />
+        <label class="poke-label" htmlFor="level">Pokemon Level</label>
+        <input class="poke-input" id="level" type="text" />
         @Button(isLoading, isPrimary, text)
     </form>
 }
