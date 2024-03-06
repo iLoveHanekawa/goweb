@@ -1,9 +1,11 @@
 package views
 
-templ UpdatePokemonForm(id string) {
+import ("fmt")
+
+templ UpdatePokemonForm(id uint) {
     <form method="POST" action="">
         <input type="text" class="poke-input" />
-        <input type="text" hidden value={id} />
+        <input type="text" hidden value={fmt.Sprint(id)} />
         @Button(false, false, "Change level")
     </form>
 }

@@ -1,8 +1,10 @@
 package views
 
-templ ReleasePokemonForm(id string) {
+import ("fmt")
+
+templ ReleasePokemonForm(id uint) {
     <form class="poke-release" method="POST" action="">
-        <input hidden value={ id } type="text" />
+        <input hidden value={ fmt.Sprint(id) } type="text" />
         @Button(false, false, "Release")
     </form>
 }

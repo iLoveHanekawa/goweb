@@ -10,7 +10,11 @@ import "context"
 import "io"
 import "bytes"
 
-func UpdatePokemonForm(id string) templ.Component {
+import (
+	"fmt"
+)
+
+func UpdatePokemonForm(id uint) templ.Component {
 	return templ.ComponentFunc(func(ctx context.Context, templ_7745c5c3_W io.Writer) (templ_7745c5c3_Err error) {
 		templ_7745c5c3_Buffer, templ_7745c5c3_IsBuffer := templ_7745c5c3_W.(*bytes.Buffer)
 		if !templ_7745c5c3_IsBuffer {
@@ -27,7 +31,7 @@ func UpdatePokemonForm(id string) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(id))
+		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(fmt.Sprint(id)))
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}

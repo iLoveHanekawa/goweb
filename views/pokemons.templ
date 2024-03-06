@@ -14,6 +14,9 @@ templ PokemonPage(pokemons []models.Pokemon) {
         // {loading && <div class="loading-spinner"></div>}
         
         <div class="pokemon-grid">
+            for _, pokemon := range pokemons {
+                @Pokemon(pokemon.ID, pokemon.Name)
+            }
             // {pokemons.map((pokemon, index) => {
             //     return <Pokemon setPokemons={setPokemons} key={index} id={pokemon.id} name={pokemon.name} type={pokemon.type} />
             // })}
