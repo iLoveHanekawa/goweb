@@ -1,0 +1,11 @@
+package views
+
+templ CatchPokemonForm(isLoading bool, isPrimary bool, text string) {
+    <form class="poke-form-add" action="" method="POST">
+        <label class="poke-label" htmlFor="name">Pokemon Name</label>
+        <input class="poke-input" id="name" type="text" />
+        <label class="poke-label" htmlFor="type">Pokemon Type</label>
+        <input class="poke-input" id="type" type="text" />
+        @Button(isLoading, isPrimary, text)
+    </form>
+}
