@@ -1,19 +1,22 @@
 package views
 
-templ PokemonPage() {
+import ("goweb/models")
+
+templ PokemonPage(pokemons []models.Pokemon) {
     <div class="content">
         <div class="heading">
             <h1 class="headline">Pokemons</h1>
             <div class="spacer"></div>
             <p class="description">Browse our complete Pokémon list - catch 'em all in one place!</p>
         </div>
-        <CatchPokemonForm isLoading={loading} setLoading={setLoading} setPokemons={setPokemons} />
-        {loading && <div class="loading-spinner"></div>}
+        @CatchPokemonForm(false, false, "Catch pokemon")
+        // <CatchPokemonForm isLoading={loading} setLoading={setLoading} setPokemons={setPokemons} />
+        // {loading && <div class="loading-spinner"></div>}
         
         <div class="pokemon-grid">
-            {pokemons.map((pokemon, index) => {
-                return <Pokemon setPokemons={setPokemons} key={index} id={pokemon.id} name={pokemon.name} type={pokemon.type} />
-            })}
+            // {pokemons.map((pokemon, index) => {
+            //     return <Pokemon setPokemons={setPokemons} key={index} id={pokemon.id} name={pokemon.name} type={pokemon.type} />
+            // })}
         </div>
     </div>
 }
