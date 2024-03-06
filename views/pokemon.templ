@@ -4,8 +4,8 @@ import "fmt"
 
 templ Pokemon(id uint, name string) {
     <div>
-        <h3 className="poke-name">{name}</h3>
-        <h4 className="poke-type">{fmt.Sprint(id)}</h4>
+        <h3 class="poke-name">{name}</h3>
+        <h4 class="poke-type">{fmt.Sprint(id)}</h4>
         @UpdatePokemonForm(id)
         @ReleasePokemonForm(id)
     </div>

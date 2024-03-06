@@ -25,6 +25,15 @@ func main() {
 		return component.Render(context.Background(), c.Response().Writer)
 	})
 
+	e.GET("/pokemons", func(c echo.Context) error {
+		var pokemons []models.Pokemon
+		if err := gorm.Find(&pokemons).Error; err != nil {
+			return c.String(http.StatusOK, "Something went wrong while quering the database")
+		}
+		component := views.Html(views.PokemonPage(pokemons), c.Request())
+		return component.Render(context.Background(), c.Response().Writer)
+	})
+
 	e.Static("/static", "assets")
 
 	e.GET("/api/v1/pokemons", func(c echo.Context) error {
