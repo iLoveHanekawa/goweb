@@ -36,16 +36,7 @@ func main() {
 
 	e.POST("/api/v1/pokemons", pokemonController.AddPokemon)
 
-	e.PATCH("/api/v1/pokemons", func(c echo.Context) error {
-		pokemon := new(models.Pokemon)
-		if err := c.Bind(pokemon); err != nil {
-			return c.JSON(http.StatusOK, err)
-		}
-		if err = gorm.Model(pokemon).Updates(pokemon).First(pokemon).Error; err != nil {
-			return c.String(http.StatusOK, "Something went wrong while writing to the database.")
-		}
-		return c.JSON(http.StatusOK, pokemon)
-	})
+	e.PATCH("/api/v1/pokemons", pokemonController.EditLevel)
 
 	e.DELETE("/api/v1/pokemons", func(c echo.Context) error {
 		pokemon := new(models.Pokemon)
