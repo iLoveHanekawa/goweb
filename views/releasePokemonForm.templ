@@ -3,7 +3,7 @@ package views
 import ("fmt")
 
 templ ReleasePokemonForm(id uint) {
-    <form class="poke-release" method="POST" hx-delete="/api/v2/pokemons" hx-indicator="#loading" enctype="multipart/form-data">
+    <form class="poke-release" method="POST" hx-delete="/api/v2/pokemons" hx-target={fmt.Sprintf("#pokemon-%v", id)} hx-indicator="#loading" enctype="multipart/form-data">
         <input hidden name="id" value={ fmt.Sprint(id) } type="text" />
         @Button(false, false, "Release")
     </form>

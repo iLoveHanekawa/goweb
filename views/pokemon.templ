@@ -3,7 +3,7 @@ package views
 import "fmt"
 
 templ Pokemon(id uint, name string, ptype string, level int ) {
-    <div>
+    <div id={ fmt.Sprintf("pokemon-%v", id) }>
         <h3 class="poke-name">{name}</h3>
         <h4 class="poke-type">{ptype}</h4>
         <h4 class="poke-type">{fmt.Sprint(level)}</h4>
