@@ -34,16 +34,7 @@ func main() {
 
 	e.GET("/api/v1/pokemons/:id", pokemonController.GetPokemon)
 
-	e.POST("/api/v1/pokemons", func(c echo.Context) error {
-		pokemon := new(models.Pokemon)
-		if err := c.Bind(pokemon); err != nil {
-			return c.JSON(http.StatusOK, err)
-		}
-		if err := gorm.Create(&pokemon).Error; err != nil {
-			return c.String(http.StatusOK, "Something went wrong while writing to the database.")
-		}
-		return c.JSON(http.StatusOK, pokemon)
-	})
+	e.POST("/api/v1/pokemons", pokemonController.AddPokemon)
 
 	e.PATCH("/api/v1/pokemons", func(c echo.Context) error {
 		pokemon := new(models.Pokemon)

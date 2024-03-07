@@ -35,3 +35,14 @@ func (controller PokemonController) GetPokemon(c echo.Context) error {
 	}
 	return c.JSON(http.StatusOK, pokemon)
 }
+
+func (controller PokemonController) AddPokemon(c echo.Context) error {
+	pokemon := new(models.Pokemon)
+	if err := c.Bind(pokemon); err != nil {
+		return c.JSON(http.StatusOK, err)
+	}
+	if err := controller.gorm.Create(&pokemon).Error; err != nil {
+		return c.String(http.StatusOK, "Something went wrong while writing to the database.")
+	}
+	return c.JSON(http.StatusOK, pokemon)
+}
