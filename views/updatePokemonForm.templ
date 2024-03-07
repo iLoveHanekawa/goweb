@@ -3,9 +3,9 @@ package views
 import ("fmt")
 
 templ UpdatePokemonForm(id uint) {
-    <form method="POST" action="">
-        <input type="text" class="poke-input" />
-        <input type="text" hidden value={fmt.Sprint(id)} />
+    <form hx-patch="/api/v2/pokemons" hx-target={fmt.Sprintf("#pokemon-%v", id)} hx-indicator="#loading" enctype="multipart/form-data">
+        <input name="level" type="text" class="poke-input" />
+        <input name="id" type="text" hidden value={fmt.Sprint(id)} />
         @Button(false, false, "Change level")
     </form>
 }
