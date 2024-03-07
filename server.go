@@ -32,14 +32,7 @@ func main() {
 
 	e.Static("/static", "assets")
 
-	e.GET("/api/v1/pokemons/:id", func(c echo.Context) error {
-		var pokemon models.Pokemon
-		id := c.Param("id")
-		if result := gorm.First(&pokemon, id); result.Error != nil {
-			return c.String(http.StatusOK, "Something went wrong while quering the database")
-		}
-		return c.JSON(http.StatusOK, pokemon)
-	})
+	e.GET("/api/v1/pokemons/:id", pokemonController.GetPokemon)
 
 	e.POST("/api/v1/pokemons", func(c echo.Context) error {
 		pokemon := new(models.Pokemon)
