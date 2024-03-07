@@ -1,9 +1,7 @@
 package controllers
 
 import (
-	"context"
 	"goweb/models"
-	"goweb/views"
 	"net/http"
 
 	"github.com/labstack/echo/v4"
@@ -23,8 +21,7 @@ func (controller PokemonController) GetPokemons(c echo.Context) error {
 	if err := controller.gorm.Find(&pokemons).Error; err != nil {
 		return c.String(http.StatusOK, "Something went wrong while quering the database")
 	}
-	component := views.Html(views.PokemonPage(pokemons), c.Request())
-	return component.Render(context.Background(), c.Response().Writer)
+	return c.JSON(http.StatusOK, pokemons)
 }
 
 func (controller PokemonController) GetPokemon(c echo.Context) error {
