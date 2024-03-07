@@ -52,6 +52,6 @@ func main() {
 	e.POST("/api/v2/pokemons", htmxPokemonController.AddPokemon)
 	e.GET("/api/v2/pokemons/:id", htmxPokemonController.GetPokemon)
 	e.DELETE("/api/v2/pokemons", htmxPokemonController.DeletePokemon)
-
+	e.PATCH("/api/v2/pokemons", htmxPokemonController.EditLevel)
 	e.Logger.Fatal(e.Start(":1323"))
 }
