@@ -26,6 +26,8 @@ func main() {
 
 	pokemonController := controllers.CreatePokemonController(gorm)
 
+	// json rest routes
+
 	e.Static("/static", "assets")
 	e.GET("/pokemons", pokemonController.GetPokemons)
 	e.GET("/api/v1/pokemons/:id", pokemonController.GetPokemon)
