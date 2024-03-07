@@ -45,11 +45,15 @@ func (controller HTMXPokemonController) GetPokemon(c echo.Context) error {
 
 func (controller HTMXPokemonController) DeletePokemon(c echo.Context) error {
 	pokemon := new(models.Pokemon)
-	if err := c.Bind(&pokemon); err != nil {
+	if err := c.Bind(pokemon); err != nil {
 		return c.String(http.StatusOK, "Failed to bind parameters to pokemon struct")
 	}
 	if err := controller.gorm.Delete(pokemon).Error; err != nil {
-		return c.String(http.StatusOK, "Failed to delete pokemon record.")
+		return c.JSON(http.StatusOK, map[string]interface{}{
+			"error":   err,
+			"pokemon": pokemon,
+			"params":  c.Request().Body,
+		})
 	}
 	return c.HTML(http.StatusOK, "")
 }

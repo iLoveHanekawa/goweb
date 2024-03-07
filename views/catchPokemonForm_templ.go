@@ -23,7 +23,7 @@ func CatchPokemonForm(isLoading bool, isPrimary bool, text string) templ.Compone
 			templ_7745c5c3_Var1 = templ.NopComponent
 		}
 		ctx = templ.ClearChildren(ctx)
-		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("<form hx-indicator=\"#laoding\" class=\"poke-form-add\" action=\"\" method=\"POST\"><label class=\"poke-label\" htmlFor=\"name\">Pokemon Name</label> <input class=\"poke-input\" id=\"name\" type=\"text\"> <label class=\"poke-label\" htmlFor=\"type\">Pokemon Type</label> <input class=\"poke-input\" id=\"type\" type=\"text\"> <label class=\"poke-label\" htmlFor=\"level\">Pokemon Level</label> <input class=\"poke-input\" id=\"level\" type=\"text\">")
+		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("<form hx-indicator=\"#loading\" class=\"poke-form-add\" action=\"\" method=\"POST\"><label class=\"poke-label\" htmlFor=\"name\">Pokemon Name</label> <input class=\"poke-input\" id=\"name\" type=\"text\"> <label class=\"poke-label\" htmlFor=\"type\">Pokemon Type</label> <input class=\"poke-input\" id=\"type\" type=\"text\"> <label class=\"poke-label\" htmlFor=\"level\">Pokemon Level</label> <input class=\"poke-input\" id=\"level\" type=\"text\">")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
