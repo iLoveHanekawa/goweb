@@ -57,3 +57,17 @@ func (controller PokemonController) EditLevel(c echo.Context) error {
 	}
 	return c.JSON(http.StatusOK, pokemon)
 }
+
+func (controller PokemonController) DeletePokemon(c echo.Context) error {
+	pokemon := new(models.Pokemon)
+	if err := c.Bind(pokemon); err != nil {
+		return c.JSON(http.StatusOK, err)
+	}
+	if err := controller.gorm.Delete(pokemon).Error; err != nil {
+		return c.JSON(http.StatusOK, err)
+	}
+	return c.JSON(http.StatusOK, map[string]interface{}{
+		"success": true,
+		"message": "Delete operation successful",
+	})
+}

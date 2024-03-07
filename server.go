@@ -3,8 +3,6 @@ package main
 import (
 	"goweb/controllers"
 	"goweb/db"
-	"goweb/models"
-	"net/http"
 
 	"context"
 
@@ -28,29 +26,12 @@ func main() {
 
 	pokemonController := controllers.CreatePokemonController(gorm)
 
-	e.GET("/pokemons", pokemonController.GetPokemons)
-
 	e.Static("/static", "assets")
-
+	e.GET("/pokemons", pokemonController.GetPokemons)
 	e.GET("/api/v1/pokemons/:id", pokemonController.GetPokemon)
-
 	e.POST("/api/v1/pokemons", pokemonController.AddPokemon)
-
 	e.PATCH("/api/v1/pokemons", pokemonController.EditLevel)
-
-	e.DELETE("/api/v1/pokemons", func(c echo.Context) error {
-		pokemon := new(models.Pokemon)
-		if err := c.Bind(pokemon); err != nil {
-			return c.JSON(http.StatusOK, err)
-		}
-		if err = gorm.Delete(pokemon).Error; err != nil {
-			return c.JSON(http.StatusOK, err)
-		}
-		return c.JSON(http.StatusOK, map[string]interface{}{
-			"success": true,
-			"message": "Delete operation successful",
-		})
-	})
+	e.DELETE("/api/v1/pokemons", pokemonController.DeletePokemon)
 
 	e.Logger.Fatal(e.Start(":1323"))
 }
