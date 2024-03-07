@@ -45,5 +45,12 @@ func main() {
 	e.PATCH("/api/v1/pokemons", pokemonController.EditLevel)
 	e.DELETE("/api/v1/pokemons", pokemonController.DeletePokemon)
 
+	// HTML rest routes
+
+	htmxPokemonController := controllers.CreateHTMXPokemonController(gorm)
+
+	e.POST("/api/v2/pokemons", htmxPokemonController.AddPokemon)
+	e.GET("/api/v2/pokemons/:id", htmxPokemonController.GetPokemon)
+
 	e.Logger.Fatal(e.Start(":1323"))
 }

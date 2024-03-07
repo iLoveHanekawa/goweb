@@ -1,6 +1,12 @@
 package controllers
 
 import (
+	"context"
+	"goweb/models"
+	"goweb/views"
+	"net/http"
+
+	"github.com/labstack/echo/v4"
 	"gorm.io/gorm"
 )
 
@@ -12,10 +18,26 @@ func CreateHTMXPokemonController(db *gorm.DB) *HTMXPokemonController {
 	return &HTMXPokemonController{gorm: db}
 }
 
-// func (controller HTMXPokemonController) GetPokemons(c echo.Context) error {
-// 	var pokemons []models.Pokemon
-// 	if err := controller.gorm.Find(&pokemons).Error; err != nil {
-// 		return c.String(http.StatusOK, "Failed to fetch pokemons from database");
-// 	}
+func (controller HTMXPokemonController) AddPokemon(c echo.Context) error {
+	pokemon := &models.Pokemon{}
+	if err := c.Bind(pokemon); err != nil {
+		return c.String(http.StatusOK, "Failed to bind parameters to pokemon struct")
+	}
+	if err := controller.gorm.Create(&pokemon).Error; err != nil {
+		return c.String(http.StatusOK, "Failed to fetch pokemons from database")
+	}
+	component := views.Pokemon(pokemon.ID, pokemon.Name, pokemon.Type, pokemon.Level)
+	return component.Render(context.Background(), c.Response().Writer)
+}
 
-// }
+func (controller HTMXPokemonController) GetPokemon(c echo.Context) error {
+	var pokemon = models.Pokemon{}
+	if err := c.Bind(&pokemon); err != nil {
+		return c.String(http.StatusOK, "Failed to bind parameters to pokemon struct")
+	}
+	if err := controller.gorm.First(&pokemon).Error; err != nil {
+		return c.String(http.StatusOK, "Failed to fetch pokemons from database")
+	}
+	component := views.Pokemon(pokemon.ID, pokemon.Name, pokemon.Type, pokemon.Level)
+	return component.Render(context.Background(), c.Response().Writer)
+}
