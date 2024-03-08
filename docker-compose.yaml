@@ -6,3 +6,9 @@ services:
       - "8080:5432"
     environment:
       POSTGRES_PASSWORD: password
+  goweb:
+    image: ilovehanekawa/goweb:latest
+    ports:
+      - "1323:1323"
+    depends_on:
+      - postgres
